@@ -110,17 +110,44 @@ Joining Date cannot be future date.
 
 -----------------------------------
 
-6) Create Lightning App
-Setup → App Manager → New Lightning App
 
-App Name:
 College Management App
+6) ADDING OBJECTS TO LIGHTNING APP
 
-Add:
-- Student Object
-- Faculty Object
+1) Go to Setup → Tabs.
+
+2) Under Custom Object Tabs click New.
+
+3) Select Object:
+   - Student
+   - Faculty
+
+4) Choose Tab Style → Next → Save.
+
+5) Repeat for both objects.
+App Name:
 
 -----------------------------------
+7) Create Lightning App
+Setup → App Manager → New Lightning App
+
+App Name:College Management
+2) Select Object: ( from 3rd page )
+   - Student
+   - Faculty
+
+ENABLE APP VISIBILITY
+
+1) While creating/editing app,
+   select:
+   ✓ System Administrator
+
+2) Save.
+
+-----------------------------------
+
+
+
 
 7) Open App and Test Validations.
 
