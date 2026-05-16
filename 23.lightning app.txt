@@ -1,0 +1,207 @@
+COLLEGE MANAGEMENT LIGHTNING APPLICATION
+
+1) Create Salesforce Developer Account.
+
+2) Go to Setup → Object Manager.
+
+3) Create Student Object.
+   Fields:
+   - Student_Name
+   - Roll_Number
+   - Marks
+   - Email
+
+4) Create Faculty Object.
+   Fields:
+   - Faculty_Name
+   - Faculty_ID
+   - Salary
+   - Department
+   - Joining_Date
+
+-----------------------------------
+VALIDATION RULES FOR STUDENT
+-----------------------------------
+
+1) Marks Validation
+Rule:
+OR(Marks__c < 0, Marks__c > 100)
+
+Error:
+Marks must be between 0 and 100.
+
+-----------------------------------
+
+2) Roll Number Validation
+Rule:
+Roll_Number__c <= 0
+
+Error:
+Roll Number must be greater than 0.
+
+-----------------------------------
+
+3) Email Validation
+Rule:
+NOT(CONTAINS(Email__c,"@"))
+
+Error:
+Email must contain @ symbol.
+
+-----------------------------------
+
+4) Student Name Validation
+Rule:
+ISBLANK(Student_Name__c)
+
+Error:
+Student Name cannot be blank.
+
+-----------------------------------
+VALIDATION RULES FOR FACULTY
+-----------------------------------
+
+1) Faculty Name Validation
+Rule:
+LEN(Faculty_Name__c) < 3
+
+Error:
+Faculty Name must contain at least 3 characters.
+
+-----------------------------------
+
+2) Faculty ID Validation
+Rule:
+Faculty_ID__c <= 0
+
+Error:
+Faculty ID must be greater than 0.
+
+(Keep Faculty ID field UNIQUE while creating field.)
+
+-----------------------------------
+
+3) Salary Validation
+Rule:
+OR(Salary__c < 10000, Salary__c > 500000)
+
+Error:
+Salary must be between 10000 and 500000.
+
+-----------------------------------
+
+4) Department Validation
+(Create Picklist Field)
+
+Departments:
+- Computer
+- IT
+- ENTC
+- Mechanical
+
+-----------------------------------
+
+5) Joining Date Validation
+Rule:
+Joining_Date__c > TODAY()
+
+Error:
+Joining Date cannot be future date.
+
+-----------------------------------
+
+6) Create Lightning App
+Setup → App Manager → New Lightning App
+
+App Name:
+College Management App
+
+Add:
+- Student Object
+- Faculty Object
+
+-----------------------------------
+
+7) Open App and Test Validations.
+
+
+HOW TO ADD VALIDATION RULES
+
+1) Go to Setup.
+
+2) Open Object Manager.
+
+3) Select Object
+   Example:
+   - Student
+   - Faculty
+
+4) Click Validation Rules.
+
+5) Click New.
+
+6) Enter:
+   - Rule Name
+   - Formula
+   - Error Message
+
+7) Click Check Syntax.
+
+8) Click Save.
+
+-----------------------------------
+EXAMPLE
+-----------------------------------
+
+Rule Name:
+Marks_Validation
+
+Formula:
+OR(Marks__c < 0, Marks__c > 100)
+
+Error Message:
+Marks must be between 0 and 100.
+
+-----------------------------------
+
+FOR UNIQUE FIELD
+-----------------------------------
+
+1) Go to Object Manager.
+
+2) Select Object.
+
+3) Open Fields and Relationships.
+
+4) Select Field
+   Example:
+   Faculty_ID
+
+5) Click Edit.
+
+6) Enable:
+   ✓ Unique
+
+7) Save.
+
+-----------------------------------
+
+FOR PICKLIST FIELD
+-----------------------------------
+
+1) Go to Fields and Relationships.
+
+2) Click New.
+
+3) Select Picklist.
+
+4) Enter field name:
+   Department
+
+5) Add values:
+   - Computer
+   - IT
+   - ENTC
+   - Mechanical
+
+6) Save.
