@@ -31,3 +31,13 @@ public with sharing class BankManager{
 
     }
 }
+
+
+
+
+BankManager.addCustomer(
+    'bname',
+    12,'bmail@',
+    Date.newInstance(2005,11,04)
+    
+);
