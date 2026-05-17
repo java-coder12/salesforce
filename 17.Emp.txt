@@ -1,0 +1,33 @@
+
+public with sharing class EmployeeManager{
+
+    public static void addEmployee(String empName, Integer empId,String empNo,String empEmail,String empDept){
+        Employee__c emp=new Employee__c(Emp_Id__c=empId,Name=empName,Emp_No__c=empNo,Emp_Email__c=empEmail,Emp_Dept__c=empDept);
+        insert emp;
+        System.debug('Employee added');
+    }
+
+    public static void viewEmployee(){
+        List<Employee__c> emps=[
+            SELECT Name,Emp_Id__c,Emp_No__c,Emp_Email__c,Emp_Dept__c
+            FROM Employee__c
+        ];
+
+        for(Employee__c e:emps){
+            System.debug('Id: ' + e.Emp_Id__c + '| Name: ' + e.Name +
+                ' | Department: ' + e.Emp_Dept__c +
+                ' | Email: ' + e.Emp_Email__c 
+            );
+        }
+    }
+
+    public static void deleteEmployee(Integer empId){
+        Employee__c emp=[
+            SELECT Id FROM Employee__c WHERE Emp_Id__c= :empId LIMIT 1
+        ];
+
+        delete emp;
+        System.debug('Employee Deleted Successfully');
+
+    }
+}
