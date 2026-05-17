@@ -1,0 +1,33 @@
+public with sharing class BankManager{
+    public static void addCustomer(String name,Integer ID, String email,Date bday){
+        Bank__c bank=new Bank__c(
+            Name=name,
+            Cust_Id__c=ID,
+            Cust_Email__c=email,
+            Cust_Bdate__c=bday
+        );
+        
+        insert bank;
+        System.debug('Inserted in DB successfully');
+    }
+    
+    public static void viewCustomer(){
+        List<Bank__c> customers=[
+            SELECT Id,Name,Cust_Id__c,Cust_Email__c,Cust_Bdate__c FROM Bank__c
+        ];
+        
+        for(Bank__c c:customers){
+            System.debug('Name : ' + c.Name + '| Email : ' + c.Cust_Email__c + ' | BirthDate : ' + c.Cust_Bdate__c );
+        }
+        
+    }
+    
+    public static void deleteCustomer(Integer ID){
+        Bank__c customer=[SELECT Id FROM Bank__c WHERE Cust_Id__c = :ID LIMIT 1];
+        delete customer;
+        System.debug(
+            'Customer Deleted Successfully'
+        );
+
+    }
+}
