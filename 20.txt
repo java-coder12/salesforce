@@ -1,0 +1,136 @@
+
+
+⸻
+
+✅ NAME VALIDATION
+
+Rule:
+
+LEN(Name) < 3
+
+Error:
+
+Name must contain at least 3 characters
+
+⸻
+
+✅ SALARY VALIDATION
+
+OR(
+Salary__c < 10000,
+Salary__c > 500000
+)
+
+⸻
+
+✅ FUTURE DATE VALIDATION
+
+Joining_Date__c > TODAY()
+
+⸻
+
+✅ DEPARTMENT VALIDATION
+
+ISBLANK(TEXT(Department__c))
+
+⸻
+
+✅ STEP 6 — CREATE LIGHTNING COMPONENT
+
+Developer Console:
+
+File → New → Lightning Component
+
+Name:
+
+employeeForm
+
+⸻
+
+✅ STEP 7 — PASTE COMPONENT CODE
+
+<aura:component
+implements="flexipage:availableForAllPageTypes">
+    <lightning:card title="Employee Form">
+        <div class="slds-p-around_medium">
+            <lightning:recordEditForm
+                objectApiName="Employee__c">
+                <lightning:messages/>
+                <lightning:inputField
+                    fieldName="Name"/>
+                <lightning:inputField
+                    fieldName="Employee_ID__c"/>
+                <lightning:inputField
+                    fieldName="Salary__c"/>
+                <lightning:inputField
+                    fieldName="Email__c"/>
+                <lightning:inputField
+                    fieldName="Department__c"/>
+                <lightning:inputField
+                    fieldName="Joining_Date__c"/>
+                <lightning:button
+                    type="submit"
+                    label="Save"
+                    variant="brand"/>
+            </lightning:recordEditForm>
+        </div>
+    </lightning:card>
+</aura:component>
+
+Save.
+
+⸻
+
+✅ STEP 8 — CREATE LIGHTNING APPLICATION
+
+File → New → Lightning Application
+
+Name:
+
+employeeApp
+
+⸻
+
+✅ PASTE APP CODE
+
+<aura:application extends="force:slds">
+    <c:employeeForm/>
+</aura:application>
+
+Save.
+
+⸻
+
+✅ STEP 9 — RUN APPLICATION
+
+Click:
+
+Preview
+
+OR open:
+
+/c/employeeApp.app
+
+⸻
+
+🧠 WHAT HAPPENS NOW
+
+User enters data
+↓
+Validation rules check data
+↓
+recordEditForm automatically saves
+↓
+Record stored in:
+
+Employee__c object
+
+inside Salesforce DB.
+
+⸻
+
+🔥 THIS IS YOUR VIVA ANSWER
+
+“Frontend is implemented using Lightning Aura Components. Data persistence is handled using Salesforce Custom Objects and lightning:recordEditForm. Validation is implemented using Salesforce Validation Rules.”
+
+That sounds clean, modern, and technically correct.
