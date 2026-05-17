@@ -1,0 +1,66 @@
+<apex:page controller="EmailController">
+    <apex:form >
+        <apex:pageBlock title="Email">
+            <apex:pageBlockSection >
+                <apex:inputText label="Recipient" value="{!toAddress}"/>
+                <apex:inputText label="Subject" value="{!subject}"/>
+                <apex:inputTextArea label="body" value="{!body}"/>
+                <apex:inputText label="file name" value="{!fileName}"/>
+                <apex:inputTextArea label="file body" value="{!fileBody}"/>
+            </apex:pageBlockSection>
+            <apex:commandButton value="Send" action="{!sendMail}"/>
+        </apex:pageBlock>
+        <apex:outputText value="{!message}"/>
+    </apex:form>
+</apex:page>
+
+public with sharing class EmailController{
+    public String toAddress {get; set;}
+    public String subject {get; set;}
+    public String body {get; set;}
+    public String fileName {get; set;}
+    public String fileBody {get; set;}
+    public String message {get; set;}
+    
+    public void sendMail(){
+        Messaging.SingleEmailMessage mail=new Messaging.SingleEmailMessage();
+        
+        if(toAddress == null || !toAddress.contains('@')){
+            message='Wrong mail Id';
+            return;
+        }
+        
+        mail.setToAddresses(new String[]{toAddress});
+        mail.setSubject(subject);
+        mail.setPlainTextBody(body);
+        
+        Messaging.EmailFileAttachment attach=new Messaging.EmailFileAttachment();
+        
+        attach.setFileName(fileName);
+        attach.setBody(Blob.valueOf(fileBody));
+        
+        mail.setFileAttachments(new Messaging.EmailFileAttachment[]{attach});
+        Messaging.sendEmail(new Messaging.SingleEmailMessage[]{mail});
+        
+        message='Sent !';
+    }
+     
+}
+
+---
+
+public class EmailManager{
+    public static void sendEmail(){
+        Messaging.SingleEmailMessage mail= new Messaging.SingleEmailMessage();
+        mail.setToAddresses(new String[]{'abhiram.ghotkar11@gmail.com'});
+        mail.setSubject('12');
+        mail.setPlainTextBody('123');
+        
+        Messaging.EmailFileAttachment attach=new Messaging.EmailFileAttachment();
+        attach.setFileName('123.txt');
+        attach.setBody(Blob.valueOf('123'));
+        mail.setFileAttachments(new Messaging.EmailFileAttachment[]{attach});
+        Messaging.sendEmail(new Messaging.SingleEmailMessage[]{mail});
+        System.debug('done');
+    }
+}
